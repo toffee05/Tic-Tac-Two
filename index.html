@@ -32,27 +32,66 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="cell x1 y1" id="x1y1" onclick="fill('x1y1')"></div>
-			<div class="cell x2 y1" id="x2y1" onclick="fill('x2y1')"></div>
-			<div class="cell x3 y1" id="x3y1" onclick="fill('x3y1')"></div>
+			<div class="cell x1 y1" id="0" onclick="fill('0')"> </div>
+			<div class="cell x2 y1" id="1" onclick="fill('1')"> </div>
+			<div class="cell x3 y1" id="2" onclick="fill('2')"> </div>
 			<br>
-			<div class="cell x1 y2" id="x1y2" onclick="fill('x1y2')"></div>
-			<div class="cell x2 y2" id="x2y2" onclick="fill('x2y2')"></div>
-			<div class="cell x3 y2" id="x3y2" onclick="fill('x3y2')"></div>
+			<div class="cell x1 y2" id="3" onclick="fill('3')"> </div>
+			<div class="cell x2 y2" id="4" onclick="fill('4')"> </div>
+			<div class="cell x3 y2" id="5" onclick="fill('5')"> </div>
 			<br>
-			<div class="cell x1 y3" id="x1y3" onclick="fill('x1y3')"></div>
-			<div class="cell x2 y3" id="x2y3" onclick="fill('x2y3')"></div>
-			<div class="cell x3 y3" id="x3y3" onclick="fill('x3y3')"></div>
+			<div class="cell x1 y3" id="6" onclick="fill('6')"> </div>
+			<div class="cell x2 y3" id="7" onclick="fill('7')"> </div>
+			<div class="cell x3 y3" id="8" onclick="fill('8')"> </div>
 		</div>
 		<script>
 			var turn = "x";
+			var filledPos = [], filledChk = [];
+			var i = 0;
+			var scoreX = 0, scoreO = 0;
+			var alignChk = [];
 		
 			function fill(pos) {
+				if(filledChk[pos])
+					return;
 				document.getElementById(pos).innerHTML = turn;
+				filledPos[pos] = turn;
+				filledChk[pos] = true;
 				if(turn == "x")
 					turn = "o";
 				else
 					turn = "x";
+				i++;
+				if(i >= 5)
+					align();
+			}
+			
+			function align() {
+				if(filledPos[0] != " " && filledPos[0] == filledPos[1] && filledPos[0] == filledPos[2] && !alignChk[0])
+					score(0, 0);
+				if(filledPos[3] != " " && filledPos[3] == filledPos[4] && filledPos[3] == filledPos[5] && !alignChk[1])
+					score(3, 1);
+				if(filledPos[6] != " " && filledPos[6] == filledPos[7] && filledPos[6] == filledPos[8] && !alignChk[2])
+					score(6, 2);
+				if(filledPos[0] != " " && filledPos[0] == filledPos[3] && filledPos[0] == filledPos[6] && !alignChk[3])
+					score(0, 3);
+				if(filledPos[1] != " " && filledPos[1] == filledPos[4] && filledPos[1] == filledPos[7] && !alignChk[4])
+					score(1, 4);
+				if(filledPos[2] != " " && filledPos[2] == filledPos[5] && filledPos[2] == filledPos[8] && !alignChk[5])
+					score(2, 5);
+				if(filledPos[0] != " " && filledPos[0] == filledPos[4] && filledPos[0] == filledPos[8] && !alignChk[6])
+					score(0, 6);
+				if(filledPos[2] != " " && filledPos[2] == filledPos[4] && filledPos[2] == filledPos[6] && !alignChk[7])
+					score(2, 7);
+			}
+			
+			function score(a,b) {
+				console.log(b);
+				if(filledPos[a] == "x")
+					scoreX++;
+				else if(filledPos[a] == "o")
+					scoreO++;
+				alignChk[b] = true;
 			}
 		</script>
 	</body>
