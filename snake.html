@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tic Tac Toe</title>
+		<meta charset="UTF-8">
+		<meta name="author" content="Christopher Allen Abit">
+		<meta name="keywords" content="tic tac toe, tic, tac, toe">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+		
+			.container {
+				width: 152px;
+				height: 152px;
+				border: 1px solid black;
+				margin: 0;
+				padding: 0;
+			}
+		
+			.cell {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				border: 1px solid white;
+				float: left;
+				background-color: black;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="cell x1 y1" id="x1y1" onclick="fill('x1y1')"></div>
+			<div class="cell x2 y1" id="x2y1" onclick="fill('x2y1')"></div>
+			<div class="cell x3 y1" id="x3y1" onclick="fill('x3y1')"></div>
+			<br>
+			<div class="cell x1 y2" id="x1y2" onclick="fill('x1y2')"></div>
+			<div class="cell x2 y2" id="x2y2" onclick="fill('x2y2')"></div>
+			<div class="cell x3 y2" id="x3y2" onclick="fill('x3y2')"></div>
+			<br>
+			<div class="cell x1 y3" id="x1y3" onclick="fill('x1y3')"></div>
+			<div class="cell x2 y3" id="x2y3" onclick="fill('x2y3')"></div>
+			<div class="cell x3 y3" id="x3y3" onclick="fill('x3y3')"></div>
+		</div>
+		<script>
+			var turn = "x";
+		
+			function fill(pos) {
+				document.getElementById(pos).innerHTML = turn;
+				if(turn == "x")
+					turn = "o";
+				else
+					turn = "x";
+			}
+		</script>
+	</body>
+</html>
