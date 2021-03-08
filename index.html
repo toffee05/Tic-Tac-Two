@@ -44,8 +44,22 @@
 			<div class="cell x2 y3" id="7" onclick="fill('7')"> </div>
 			<div class="cell x3 y3" id="8" onclick="fill('8')"> </div>
 		</div>
+		
+		<button onclick="start()">test</button>
+		<p>Turn: <span id="turn"></span></p>
+		<p>Score X: <span id="scoreX">0</span></p>
+		<p>Score O: <span id="scoreO">0</span></p>
 		<script>
-			var turn = "x";
+			var turn;
+		
+			function start() {
+				if(Math.ceil(Math.random() * 100) <= 50) 
+					turn = "x";
+				else 
+					turn = "o";
+				document.getElementById("turn").innerHTML = turn;
+			}
+			
 			var filledPos = [], filledChk = [];
 			var i = 0;
 			var scoreX = 0, scoreO = 0;
@@ -87,10 +101,14 @@
 			
 			function score(a,b) {
 				console.log(b);
-				if(filledPos[a] == "x")
+				if(filledPos[a] == "x") {
 					scoreX++;
-				else if(filledPos[a] == "o")
+					document.getElementById("scoreX").innerHTML = scoreX;
+				}
+				else if(filledPos[a] == "o") {
 					scoreO++;
+					document.getElementById("scoreO").innerHTML = scoreO;
+				}
 				alignChk[b] = true;
 			}
 		</script>
